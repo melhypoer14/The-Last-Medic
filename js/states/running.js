@@ -15,20 +15,14 @@ function running(game) {
      gravity: { y: 300 }
 
     function preload() {
-        game.load.image('Backgroundz', 'assets/Backgroundz.jpg');
+        game.load.image('citybackground', 'assets/citybackground.png');
         game.load.image('Stuff', 'assets/Stuff.png');
         game.load.image('smalls', 'assets/smalls.png');
         game.load.image('jet', 'assets/jet.png');
         game.load.image('star', 'assets/star.png');
         game.load.image('free', 'assets/free.png');
         game.load.spritesheet('Running', 'assets/Runstand.png', 50, 50);
-        game.load.spritesheet('Shadow', 'assets/Shadow.png', 50, 50);
-        game.load.spritesheet('robot', 'assets/robot.png', 50, 50);
-        game.load.spritesheet('melee', 'assets/melee.png', 100, 100);
-        game.load.spritesheet('shoot', 'assets/shoot.png', 100, 100);
-        game.load.spritesheet('pew', 'assets/pew.png', 100, 100);
-        game.load.spritesheet('sheet', 'assets/sheet.png', 100, 100);
-        game.load.spritesheet('rowat', 'assets/rowat.png', 100, 100);
+        game.load.spritesheet('betcat', 'assets/betcat.png', 75, 75);
         game.load.spritesheet('clone', 'assets/clone.png', 100, 100);
         game.load.spritesheet('pop', 'assets/clone.png', 160, 160);
 
@@ -38,39 +32,20 @@ function running(game) {
 
     function create() {
         game.world.setBounds(0, 0, 1920, 600);
-        game.add.sprite(-300, -300, 'Backgroundz');
+        game.add.sprite(-300, -300, '');
 
 
 
-        var melee = game.add.sprite(300, 100, 'melee');
-        var walk = melee.animations.add('walk');
-        melee.animations.add('walk', [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 12, true);
-        melee.animations.play('walk');
+        var melee = game.add.sprite(300, 100, '');
+        var walk = melee.animations.add('');
+        melee.animations.add('', [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 12, true);
+        melee.animations.play('');
 
-        var shoot = game.add.sprite(100, 100, 'shoot');
-        shoot.animations.add('shooting', [0, 1, 2 , 3, 4, 5, 6, 7], 14, true);
-        shoot.animations.play('shooting');
+        var shoot = game.add.sprite(100, 100, '');
+        shoot.animations.add('', [0, 1, 2 , 3, 4, 5, 6, 7], 14, true);
+        shoot.animations.play('');
 
-        var A = game.add.sprite(200, 100, 'pew');
-        A.animations.add('shot', [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], 14, true);
-        A.animations.play('shot');
-
-        var stun = game.add.sprite(500, 100, 'sheet');
-        stun.animations.add('stun', [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34], 12, true);
-        stun.animations.play('stun');
-
-        var wot = game.add.sprite(0, 100, 'rowat');
-        wot.animations.add('wot', [0, 1, 2 , 3, 4, 5, 6, 7], 10, true);
-        wot.animations.play('wot');
-
-        var wat = game.add.sprite(0, 200, 'clone');
-        wat.animations.add('wat', [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 98, 99, 100, 101, 102, 103, 104, 105, 106], 20, true);
-        wat.animations.play('wat');
-
-        var t = game.add.sprite(1000, 200, 'pop');
-        t.animations.add('t', [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 98], 20, true);
-        t.animations.play('t');
-
+       
 
 
         /*
@@ -78,8 +53,6 @@ function running(game) {
         */
 
         platforms = game.add.physicsGroup();
-        platforms.create(1200, 500, 'melee');
-        platforms.create(1200, 800, 'shoot');
         platforms.create(1200, 500, 'smalls');
         platforms.create(1200, 500, 'smalls');
         platforms.create(650, 645, 'smalls');
@@ -163,19 +136,18 @@ function running(game) {
 
 
 
-        player = game.add.sprite(32, game.world.height - 300, 'Running');
+        player = game.add.sprite(32, game.world.height - 300, 'betcat');
         game.physics.arcade.enable(player);
-        player.animations.add('left', [0, 1, 2, 3, 4, 5, 6, 7], 12, true);
-        player.animations.add('right', [19, 20, 21, 22, 23, 24, 25, 26], 12, true);
-        player.animations.add('idleright', [8, 9, 10 ,11, 12, 13, 14, 15, 16, 17, 18], 8, true);
-        player.animations.add('idleleft', [ 39, 40, 41, 42, 43, 44, 45, 46], 8, true);
-        player.animations.add('land', [33, 34, 35, 8], 8, false);
-        player.animations.add('jumpright', [28, 29, 30, 31, 32, 30, 31, 32, 30, 31, 32], 8, false);
-        player.animations.add('fallright', [30, 31, 32, 30, 31, 32, 30, 31, 32], 8, false);
-        player.animations.add('jumpleft', [48, 49, 50, 51, 50, 51, 52, 50, 51, 52], 8, false);
-        player.body.setSize(20, 30, 20, 10)
-        player.animations.add('fallleft', [50, 51, 50, 51, 52, 50, 51, 52], 8, false);
-        player.body.setSize(20, 30, 20, 10)
+        player.body.setSize(20, 30, 10, 10);
+        player.animations.add('left', [32, 33, 34, 35, 36, 37, 38, 39], 12, true);
+        player.animations.add('right', [22, 23, 24, 25, 26, 27, 28, 29, 30, 31], 12, true);
+        player.animations.add('idleleft', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21], 8, true);
+        player.animations.add('idleright', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 8, true);
+        player.animations.add('jumpright', [40, 41, 42, 43, 44, 45, 46, 47, 48, 47, 48, 47, 48], 8, false);
+        player.animations.add('fallright', [43, 44, 45, 46 , 47], 8, false);
+        player.animations.add('jumpleft', [49, 50, 51, 52, 53, 54, 55, 56, 57, 56 ,57, 56, 57], 8, false);
+        player.animations.add('fallleft', [52, 53, 54, 55, 56, 57], 8, false);
+//        player.body.setSize(20, 30, 20, 10);
 
 
         player.body.bounce.y = 0;
