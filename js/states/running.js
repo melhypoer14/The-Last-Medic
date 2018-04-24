@@ -32,7 +32,7 @@ function running(game) {
 
     function create() {
         game.world.setBounds(0, 0, 1920, 600);
-        game.add.sprite(-300, -300, '');
+        game.add.sprite(0,200, 'citybackground');
 
 
 
@@ -138,7 +138,7 @@ function running(game) {
 
         player = game.add.sprite(32, game.world.height - 300, 'betcat');
         game.physics.arcade.enable(player);
-        player.body.setSize(20, 30, 10, 10);
+        player.body.setSize(30, 30, 10, 10);
         player.animations.add('left', [32, 33, 34, 35, 36, 37, 38, 39], 12, true);
         player.animations.add('right', [22, 23, 24, 25, 26, 27, 28, 29, 30, 31], 12, true);
         player.animations.add('idleleft', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21], 8, true);
@@ -147,6 +147,7 @@ function running(game) {
         player.animations.add('fallright', [43, 44, 45, 46 , 47], 8, false);
         player.animations.add('jumpleft', [49, 50, 51, 52, 53, 54, 55, 56, 57, 56 ,57, 56, 57], 8, false);
         player.animations.add('fallleft', [52, 53, 54, 55, 56, 57], 8, false);
+        player.animations.add('shootleft', [48, 49, 50, 51, 52, 53, 54,], 8, false);
 //        player.body.setSize(20, 30, 20, 10);
 
 
