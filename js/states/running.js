@@ -15,14 +15,14 @@ function running(game) {
      gravity: { y: 300 }
 
     function preload() {
-        game.load.image('citybackground', 'assets/citybackground.png');
+        game.load.image('city', 'assets/CITY.png');
         game.load.image('Stuff', 'assets/Stuff.png');
         game.load.image('smalls', 'assets/smalls.png');
         game.load.image('jet', 'assets/jet.png');
         game.load.image('star', 'assets/star.png');
         game.load.image('free', 'assets/free.png');
         game.load.spritesheet('Running', 'assets/Runstand.png', 50, 50);
-        game.load.spritesheet('betcat', 'assets/betcat.png', 75, 75);
+        game.load.spritesheet('betcat', 'assets/betcat.png', 198, 168);
         game.load.spritesheet('clone', 'assets/clone.png', 100, 100);
         game.load.spritesheet('pop', 'assets/clone.png', 160, 160);
 
@@ -32,7 +32,7 @@ function running(game) {
 
     function create() {
         game.world.setBounds(0, 0, 1920, 600);
-        game.add.sprite(0,200, 'citybackground');
+        game.add.sprite(0, 50, 'city');
 
 
 
@@ -129,10 +129,10 @@ function running(game) {
         /*
         * Robots
         */
-        robots = game.add.physicsGroup();
-
-        robot = robots.create(200, game.world.height - 200, 'robot');
-        robots.setAll('body.gravity.y', 1000);
+//        zombies = game.add.physicsGroup();
+//
+//        zombie = zombies.create(200, game.world.height - 200, 'zombie');
+//        zombies.setAll('body.gravity.y', 1000);
 
 
 
@@ -157,7 +157,7 @@ function running(game) {
         cursors = game.input.keyboard.createCursorKeys();
         game.camera.follow(player);
 
-        tween = game.add.tween(robot).to( { x: 100 }, 2000,  Phaser.Easing.Linear.None, true);
+//        tween = game.add.tween(robot).to( { x: 100 }, 2000,  Phaser.Easing.Linear.None, true);
 
     }
 
