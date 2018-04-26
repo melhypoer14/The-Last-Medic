@@ -21,7 +21,7 @@ function running(game) {
         game.load.image('smalls', 'assets/smalls.png');
         game.load.image('jet', 'assets/jet.png');
         game.load.spritesheet('betcat', 'assets/betcat.png', 198, 168);
-        game.load.spritesheet('car', 'assets/car.png', 992, 336);
+        game.load.spritesheet('car', 'assets/car.png', 938, 246);
      
     }
 
@@ -36,7 +36,7 @@ function running(game) {
         melee.animations.add('', [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 12, true);
         melee.animations.play('');
 
-        var melee = game.add.sprite(5400, 250, 'car');
+        var melee = game.add.sprite(5400, 350, 'car');
         var walk = melee.animations.add('car');
         melee.animations.add('car', [0, 1, 2 , 3, 4, 5], 12, true);
         melee.animations.play('car');
@@ -49,7 +49,7 @@ function running(game) {
         */
 
         platforms = game.add.physicsGroup();
-         platforms.create(5400, 250, 'car');
+        platforms.create(5400, 350, 'stuff');
         platforms.create(0, 500, 'Stuff');
         platforms.create(500, 500, 'Stuff');
         platforms.create(1000, 500, 'Stuff');
@@ -261,7 +261,7 @@ function running(game) {
 
             case "JUMP_RIGHT":
                 if (player.body.velocity.y == 0) {
-                    player.body.velocity.y -= 400;
+                    player.body.velocity.y -= 800;
                 }                
                 player.animations.play('jumpright')
                 break;
