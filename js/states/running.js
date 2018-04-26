@@ -16,22 +16,17 @@ function running(game) {
 
     function preload() {
         game.load.image('city', 'assets/CITY.png');
+        game.load.image('sidewalk', 'assets/sidewalk.png');
         game.load.image('Stuff', 'assets/Stuff.png');
         game.load.image('smalls', 'assets/smalls.png');
         game.load.image('jet', 'assets/jet.png');
-        game.load.image('star', 'assets/star.png');
-        game.load.image('free', 'assets/free.png');
-        game.load.spritesheet('Running', 'assets/Runstand.png', 50, 50);
         game.load.spritesheet('betcat', 'assets/betcat.png', 198, 168);
-        game.load.spritesheet('clone', 'assets/clone.png', 100, 100);
-        game.load.spritesheet('pop', 'assets/clone.png', 160, 160);
-
-
-
+        game.load.spritesheet('car', 'assets/car.png', 992, 336);
+     
     }
 
     function create() {
-        game.world.setBounds(0, 0, 1920, 600);
+        game.world.setBounds(0, 0, 6400, 600);
         game.add.sprite(0, 50, 'city');
 
 
@@ -41,9 +36,10 @@ function running(game) {
         melee.animations.add('', [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 12, true);
         melee.animations.play('');
 
-        var shoot = game.add.sprite(100, 100, '');
-        shoot.animations.add('', [0, 1, 2 , 3, 4, 5, 6, 7], 14, true);
-        shoot.animations.play('');
+        var melee = game.add.sprite(5400, 250, 'car');
+        var walk = melee.animations.add('car');
+        melee.animations.add('car', [0, 1, 2 , 3, 4, 5], 12, true);
+        melee.animations.play('car');
 
        
 
@@ -53,20 +49,20 @@ function running(game) {
         */
 
         platforms = game.add.physicsGroup();
-        platforms.create(1200, 500, 'smalls');
-        platforms.create(1200, 500, 'smalls');
-        platforms.create(650, 645, 'smalls');
-        platforms.create(400, 450, 'smalls');
-        platforms.create(550, 450, 'smalls');
-        platforms.create(600, 450, 'smalls');
-        platforms.create(400, 450, 'smalls');
-        platforms.create(00, 450, 'smalls');
-        platforms.create(650, 450, 'smalls');
-        platforms.create(200, 400, 'smalls');
-        platforms.create(400, 300, 'smalls');
-        platforms.create(600, 230, 'smalls');
-        platforms.create(1300, 400, 'smalls');
-        platforms.create(1000, 340, 'smalls');
+         platforms.create(5400, 250, 'car');
+        platforms.create(0, 500, 'Stuff');
+        platforms.create(500, 500, 'Stuff');
+        platforms.create(1000, 500, 'Stuff');
+        platforms.create(1500, 500, 'Stuff');
+        platforms.create(2000, 500, 'Stuff');
+        platforms.create(2500, 500, 'Stuff');
+        platforms.create(3000, 500, 'Stuff');
+        platforms.create(3500, 500, 'Stuff');
+        platforms.create(4000, 500, 'Stuff');
+        platforms.create(4500, 500, 'Stuff');
+        platforms.create(5000, 500, 'Stuff');
+        platforms.create(5500, 500, 'Stuff');
+        platforms.create(6000, 500, 'Stuff');
 
 
 
@@ -107,21 +103,9 @@ function running(game) {
 
 
 
-        platforms.create(650, 645, 'smalls');
-        platforms.create(600, 680, 'Stuff');
-        platforms.create(200, 680, 'Stuff');
-        platforms.create(0, 680, 'Stuff');
-        platforms.create(400, 680, 'Stuff');
-        platforms.create(800, 680, 'Stuff');
-        platforms.create(800, 600, 'Stuff');
-        platforms.create(1000, 520, 'Stuff');
-        platforms.create(1000, 520, 'Stuff');
-        platforms.create(1200, 520, 'Stuff');
-        platforms.create(800, 300, 'Stuff');
         /*
         * Spawn
         */
-        platforms.create(0, 500, 'smalls');
 
         platforms.setAll('body.allowGravity', false);
         platforms.setAll('body.immovable', true);
@@ -136,23 +120,24 @@ function running(game) {
 
 
 
-        player = game.add.sprite(32, game.world.height - 300, 'betcat');
+        player = game.add.sprite(32, game.world.height - 600, 'betcat');
         game.physics.arcade.enable(player);
-        player.body.setSize(30, 30, 10, 10);
-        player.animations.add('left', [32, 33, 34, 35, 36, 37, 38, 39], 12, true);
-        player.animations.add('right', [22, 23, 24, 25, 26, 27, 28, 29, 30, 31], 12, true);
-        player.animations.add('idleleft', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21], 8, true);
+        player.body.setSize(150, 150, 10, 10);
         player.animations.add('idleright', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 8, true);
-        player.animations.add('jumpright', [40, 41, 42, 43, 44, 45, 46, 47, 48, 47, 48, 47, 48], 8, false);
-        player.animations.add('fallright', [43, 44, 45, 46 , 47], 8, false);
-        player.animations.add('jumpleft', [49, 50, 51, 52, 53, 54, 55, 56, 57, 56 ,57, 56, 57], 8, false);
-        player.animations.add('fallleft', [52, 53, 54, 55, 56, 57], 8, false);
-        player.animations.add('shootleft', [48, 49, 50, 51, 52, 53, 54,], 8, false);
+        player.animations.add('idleleft', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21], 8, true);
+        player.animations.add('right', [22, 23, 24, 25, 26, 27, 28, 29, 30, 31], 12, true);
+        player.animations.add('left', [32 ,33 ,34 ,35 ,36 ,37 ,38 ,39, 41], 12, true);
+        player.animations.add('jumpright', [42,43, 44, 45, 46, 47, 48, 49, 50, 49, 50, 49, 50], 8, false);
+        player.animations.add('fallright', [45, 46, 47, 48, 49, 50, 49, 50, 49, 50], 8, false);
+        player.animations.add('jumpleft', [51, 52, 53, 54, 55, 56, 57, 58, 59, 58, 59, 58, 59], 8, false);
+        player.animations.add('fallleft', [54, 55, 56, 57, 58, 59, 58, 59, 58, 59], 8, false);
+        player.animations.add('shootright', [60, 61, 62, 63, 64, 65, 66], 8, false);
+        player.animations.add('shootleft', [], 8, false);
 //        player.body.setSize(20, 30, 20, 10);
 
 
         player.body.bounce.y = 0;
-        player.body.gravity.y = 400;
+        player.body.gravity.y = 600;
 
         cursors = game.input.keyboard.createCursorKeys();
         game.camera.follow(player);
@@ -213,10 +198,10 @@ function running(game) {
         if (player.body.touching.down) {
             if (cursors.up.isDown) {
                 //jump
-                if (playerState == "WALK_LEFT" || playerState == "IDLELEFT") {
+                if (playerState == "WALK_LEFT" || playerState == "IDLELEFT" || playerState == "AIR_LEFT") {
                     playerState = "JUMP_LEFT";
                 }
-                else if (playerState == "WALK_RIGHT" || playerState == "IDLERIGHT"){
+                else if (playerState == "WALK_RIGHT" || playerState == "IDLERIGHT" || playerState == "AIR_RIGHT"){
                     playerState = "JUMP_RIGHT"
                 }
             } else if (cursors.right.isDown) {
@@ -235,9 +220,13 @@ function running(game) {
                 }
             }
         } else {
-            
-            //what happens if the player is not on the ground?
-            
+      //what happens if the player is not on the ground?
+           if (playerState == "WALK_LEFT" || playerState == "IDLELEFT") {
+               playerState = "AIR_LEFT";
+            }
+            else if (playerState == "WALK_RIGHT" || playerState == "IDLERIGHT"){
+                playerState = "AIR_RIGHT"
+                }
         }
         
     
@@ -260,31 +249,34 @@ function running(game) {
                 break;
 
             case "WALK_LEFT":
-                player.body.velocity.x = -150;
+                player.body.velocity.x = -800;
                 player.animations.play('left');
                 break;
 
             case "WALK_RIGHT":
-                player.body.velocity.x = 150;
+                player.body.velocity.x = 800;
                 player.animations.play('right');
                 
                 break;
 
             case "JUMP_RIGHT":
                 if (player.body.velocity.y == 0) {
-                    player.body.velocity.y -= 300;
+                    player.body.velocity.y -= 400;
                 }                
                 player.animations.play('jumpright')
                 break;
                 
             case "JUMP_LEFT":
                 if (player.body.velocity.y == 0) {
-                    player.body.velocity.y -= 300;
+                    player.body.velocity.y -= 400;
                 }
                 player.animations.play('jumpleft')
                 break;
                 
             case "AIR_RIGHT":
+                if (player.body.velocity.y == 400) {
+                    player.body.velocity.y -= 0;
+                }
                 player.animations.play('fallright')
                 break;
                 
