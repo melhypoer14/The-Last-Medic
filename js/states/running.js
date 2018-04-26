@@ -20,6 +20,8 @@ function running(game) {
         game.load.image('Stuff', 'assets/Stuff.png');
         game.load.image('smalls', 'assets/smalls.png');
         game.load.image('jet', 'assets/jet.png');
+        game.load.image('carf', 'assets/carf.png');
+        game.load.image('amb', 'assets/amb.png');
         game.load.spritesheet('betcat', 'assets/betcat.png', 198, 168);
         game.load.spritesheet('car', 'assets/car.png', 938, 246);
      
@@ -49,7 +51,8 @@ function running(game) {
         */
 
         platforms = game.add.physicsGroup();
-        platforms.create(5400, 350, 'stuff');
+        platforms.create(5400, 350, 'carf');
+        platforms.create(5990, 260, 'amb');
         platforms.create(0, 500, 'Stuff');
         platforms.create(500, 500, 'Stuff');
         platforms.create(1000, 500, 'Stuff');
@@ -249,32 +252,32 @@ function running(game) {
                 break;
 
             case "WALK_LEFT":
-                player.body.velocity.x = -800;
+                player.body.velocity.x = -500;
                 player.animations.play('left');
                 break;
 
             case "WALK_RIGHT":
-                player.body.velocity.x = 800;
+                player.body.velocity.x = 500;
                 player.animations.play('right');
                 
                 break;
 
             case "JUMP_RIGHT":
                 if (player.body.velocity.y == 0) {
-                    player.body.velocity.y -= 800;
+                    player.body.velocity.y -= 500;
                 }                
                 player.animations.play('jumpright')
                 break;
                 
             case "JUMP_LEFT":
                 if (player.body.velocity.y == 0) {
-                    player.body.velocity.y -= 400;
+                    player.body.velocity.y -= 500;
                 }
                 player.animations.play('jumpleft')
                 break;
                 
             case "AIR_RIGHT":
-                if (player.body.velocity.y == 400) {
+                if (player.body.velocity.y == 500) {
                     player.body.velocity.y -= 0;
                 }
                 player.animations.play('fallright')
