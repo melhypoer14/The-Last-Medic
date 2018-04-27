@@ -217,10 +217,10 @@ function running(game) {
                 playerState = "WALK_LEFT"
             } else {
                 //idle
-                if (playerState == "WALK_LEFT" || playerState == "JUMP_LEFT" || playerState == "AIR_LEFT") {
+                if (playerState == "WALK_LEFT" || playerState == "JUMP_LEFT" || playerState == "AIR_LEFT" || playerState == "SHOOT_LEFT" ) {
                     // we just finished walking or jumping left
                     playerState = "IDLELEFT"
-                } else if (playerState == "WALK_RIGHT" || playerState == "JUMP_RIGHT" || playerState == "AIR_RIGHT") {
+                } else if (playerState == "WALK_RIGHT" || playerState == "JUMP_RIGHT" || playerState == "AIR_RIGHT" || playerState == "SHOOT_RIGHT" ) {
                     playerState = "IDLERIGHT"
                 }
             }
@@ -289,6 +289,13 @@ function running(game) {
                 player.animations.play('fallleft')
                 break;
 
+                 case "SHOOT_LEFT":
+                player.animations.play('shootleft')
+                break;
+                
+                 case "SHOOT_RIGHT":
+                player.animations.play('shootright')
+                break;
 
             case "JUMP":
                 break;
