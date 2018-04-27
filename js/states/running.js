@@ -8,10 +8,11 @@ function running(game) {
     var jumpAnimation;
     var tween;
     var sprites;
+    
 
     var playerState = "IDLERIGHT";
 //    var playState = "WALK_LEFT";
-//    var platState = "WALK_RIGHT";
+//    var playState = "WALK_RIGHT";
      gravity: { y: 300 }
 
     function preload() {
@@ -33,9 +34,9 @@ function running(game) {
 
 
 
-        var melee = game.add.sprite(300, 100, '');
+        var melee = game.add.sprite(0, 100, '');
         var walk = melee.animations.add('');
-        melee.animations.add('', [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 12, true);
+        melee.animations.add('', [0,], 12, true);
         melee.animations.play('');
 
         var melee = game.add.sprite(5400, 350, 'car');
@@ -134,8 +135,8 @@ function running(game) {
         player.animations.add('fallright', [45, 46, 47, 48, 49, 50, 49, 50, 49, 50], 8, false);
         player.animations.add('jumpleft', [51, 52, 53, 54, 55, 56, 57, 58, 59, 58, 59, 58, 59], 8, false);
         player.animations.add('fallleft', [54, 55, 56, 57, 58, 59, 58, 59, 58, 59], 8, false);
-        player.animations.add('shootright', [60, 61, 62, 63, 64, 65, 66], 8, false);
-        player.animations.add('shootleft', [], 8, false);
+        player.animations.add('shootright', [66, 67, 68, 69, 70, 71, 72, 73], 8, false);
+        player.animations.add('shootleft', [74, 75, 76, 77, 78, 79, 80], 8, false);
 //        player.body.setSize(20, 30, 20, 10);
 
 
@@ -143,6 +144,7 @@ function running(game) {
         player.body.gravity.y = 600;
 
         cursors = game.input.keyboard.createCursorKeys();
+        shoot = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         game.camera.follow(player);
 
 //        tween = game.add.tween(robot).to( { x: 100 }, 2000,  Phaser.Easing.Linear.None, true);
@@ -215,10 +217,10 @@ function running(game) {
                 playerState = "WALK_LEFT"
             } else {
                 //idle
-                if (playerState == "WALK_LEFT" || playerState == "JUMP_LEFT") {
+                if (playerState == "WALK_LEFT" || playerState == "JUMP_LEFT" || playerState == "AIR_LEFT") {
                     // we just finished walking or jumping left
                     playerState = "IDLELEFT"
-                } else if (playerState == "WALK_RIGHT" || playerState == "JUMP_RIGHT") {
+                } else if (playerState == "WALK_RIGHT" || playerState == "JUMP_RIGHT" || playerState == "AIR_RIGHT") {
                     playerState = "IDLERIGHT"
                 }
             }
