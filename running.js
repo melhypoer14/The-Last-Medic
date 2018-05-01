@@ -8,14 +8,10 @@ function running(game) {
     var jumpAnimation;
     var tween;
     var sprites;
-    var aKey;
-    var sKey;
-    var s;
-    var zombies
 
     var playerState = "IDLERIGHT";
 //    var playState = "WALK_LEFT";
-//    var playState = "WALK_RIGHT";
+//    var platState = "WALK_RIGHT";
      gravity: { y: 300 }
 
     function preload() {
@@ -24,38 +20,24 @@ function running(game) {
         game.load.image('Stuff', 'assets/Stuff.png');
         game.load.image('smalls', 'assets/smalls.png');
         game.load.image('jet', 'assets/jet.png');
-        game.load.image('carf', 'assets/carf.png');
-        game.load.image('amb', 'assets/amb.png');
-        game.load.spritesheet('betcat', 'assets/betcat.png', 219, 168);
-        game.load.spritesheet('car', 'assets/car.png', 938, 246);
-        game.load.spritesheet('zom', 'assets/zom.png', 132, 147);
-        game.load.audio('music', 'assets/dust.mp3');
-        game.load.audio('shoot', 'assets/shoot.mp3');
+        game.load.spritesheet('betcat', 'assets/betcat.png', 198, 168);
      
     }
 
     function create() {
-        
-    var Music = game.add.audio('music');
-        Music.play();
-        
-    var Shoot = game.add.audio('shoot');
-        
-        
         game.world.setBounds(0, 0, 6400, 600);
         game.add.sprite(0, 50, 'city');
 
 
 
-        var melee = game.add.sprite(0, 100, '');
+        var melee = game.add.sprite(300, 100, '');
         var walk = melee.animations.add('');
-        melee.animations.add('', [0,], 12, true);
+        melee.animations.add('', [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 12, true);
         melee.animations.play('');
 
-        var melee = game.add.sprite(5400, 350, 'car');
-        var walk = melee.animations.add('car');
-        melee.animations.add('car', [0, 1, 2 , 3, 4, 5], 12, true);
-        melee.animations.play('car');
+        var shoot = game.add.sprite(100, 100, '');
+        shoot.animations.add('', [0, 1, 2 , 3, 4, 5, 6, 7], 14, true);
+        shoot.animations.play('');
 
        
 
@@ -65,8 +47,6 @@ function running(game) {
         */
 
         platforms = game.add.physicsGroup();
-        platforms.create(5400, 350, 'carf');
-        platforms.create(5990, 260, 'amb');
         platforms.create(0, 500, 'Stuff');
         platforms.create(500, 500, 'Stuff');
         platforms.create(1000, 500, 'Stuff');
@@ -79,12 +59,7 @@ function running(game) {
         platforms.create(4500, 500, 'Stuff');
         platforms.create(5000, 500, 'Stuff');
         platforms.create(5500, 500, 'Stuff');
-        platforms.create(6000, 500, 'Stuff',);
-        
-        platforms.collideDown = false;{
-    
-        }
-
+        platforms.create(6000, 500, 'Stuff');
 
 
 
@@ -145,96 +120,32 @@ function running(game) {
         player = game.add.sprite(32, game.world.height - 600, 'betcat');
         game.physics.arcade.enable(player);
         player.body.setSize(150, 150, 10, 10);
-        player.animations.add('idleright', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 8, false);
+        player.animations.add('idleright', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 8, true);
         player.animations.add('idleleft', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21], 8, true);
         player.animations.add('right', [22, 23, 24, 25, 26, 27, 28, 29, 30, 31], 12, true);
-        player.animations.add('left', [32 ,33 ,34 ,35 ,36 ,37 ,38 ,39, 40, 41], 12, true);
+        player.animations.add('left', [32 ,33 ,34 ,35 ,36 ,37 ,38 ,39, 41], 12, true);
         player.animations.add('jumpright', [42,43, 44, 45, 46, 47, 48, 49, 50, 49, 50, 49, 50], 8, false);
-        player.animations.add('fallright', [45, 46, 47, 48, 49, 50, 49, 50, 49, 50], 8, true);
+        player.animations.add('fallright', [45, 46, 47, 48, 49, 50, 49, 50, 49, 50], 8, false);
         player.animations.add('jumpleft', [51, 52, 53, 54, 55, 56, 57, 58, 59, 58, 59, 58, 59], 8, false);
-        player.animations.add('fallleft', [54, 55, 56, 57, 58, 59, 58, 59, 58, 59], 8, true);
-        player.animations.add('shootright', [60, 61, 62, 63, 64,65, 66], 16, false);
-        player.animations.add('shootleft', [67, 68, 69, 70, 71, 72, 73], 16, false);
-        player.animations.add('reloadright', [74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85], 16, false);
-        player.animations.add('reloadleft', [86, 87, 88, 89, 90, 91, 92, 93, 94, 95], 16, false);
-//      player.body.setSize(20, 30, 20, 10);
-        
-//        
-//         zombies = game.add.group();
-//    zombies.enableBody = true;
-//    zombies.physicsBodyType = Phaser.Physics.ARCADE;
-//    createZombies();
-//        
-//        
-        
+        player.animations.add('fallleft', [54, 55, 56, 57, 58, 59, 58, 59, 58, 59], 8, false);
+        player.animations.add('shootleft', [48, 49, 50, 51, 52, 53, 54,], 8, false);
+//        player.body.setSize(20, 30, 20, 10);
 
 
-        
-         game.input.touch.preventDefault = false;
-
-        
         player.body.bounce.y = 0;
         player.body.gravity.y = 600;
-        cursors = game.input.keyboard.createCursorKeys();
-        aKey = game.input.keyboard.addKey(Phaser.Keyboard.A)
-        sKey = game.input.keyboard.addKey(Phaser.Keyboard.S)
-        game.camera.follow(player);
 
-    
+        cursors = game.input.keyboard.createCursorKeys();
+        game.camera.follow(player);
 
 //        tween = game.add.tween(robot).to( { x: 100 }, 2000,  Phaser.Easing.Linear.None, true);
 
     }
-    
-    
-    
-//    function createZombies () {
-//
-//    for (var y = 0; y < 4; y++)
-//    {
-//        for (var x = 0; x < 10; x++)
-//        {
-//            var zombies = zombies.create(x * 48, y * 50, 'zom');
-//            zombie.anchor.setTo(0.5, 0.5);
-//            zombie.animations.add('walk', [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 12, true);
-//            zombie.play('walk');
-//            zombie.body.moves = true;
-//        }
-//    }
-//    zombies.x = 100;
-//    zombies.y = 50;
-//    var tween = game.add.tween(zombies).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
-//    tween.onLoop.add(descend, this);
-//}
-//    
-//    
-    
-    
-    
-    
-    
-    
-    
-    function start() {
-
-    sounds.shift();
-
-    bass.loopFull(0.6);
-    bass.onLoop.add(hasLooped, this);
-
-    text.text = 'bass';
-
-}
-    
-    
-    
-    
-    
 
     function update() {
         game.physics.arcade.collide(player, platforms);
-        game.physics.arcade.collide(zombies, platforms);
-        game.physics.arcade.collide(player, zombies);
+        game.physics.arcade.collide(robots, platforms);
+        game.physics.arcade.collide(player, robots);
 
         /*
         * State Transitions
@@ -295,12 +206,12 @@ function running(game) {
             } else if (cursors.left.isDown) {
                 //move left
                 playerState = "WALK_LEFT"
-            }else {
+            } else {
                 //idle
-                if (playerState == "WALK_LEFT" || playerState == "JUMP_LEFT" || playerState == "AIR_LEFT"){
+                if (playerState == "WALK_LEFT" || playerState == "JUMP_LEFT") {
                     // we just finished walking or jumping left
                     playerState = "IDLELEFT"
-                } else if (playerState == "WALK_RIGHT" || playerState == "JUMP_RIGHT" || playerState == "AIR_RIGHT" || playerState == "RELOAD_RIGHT" ) {
+                } else if (playerState == "WALK_RIGHT" || playerState == "JUMP_RIGHT") {
                     playerState = "IDLERIGHT"
                 }
             }
@@ -314,29 +225,8 @@ function running(game) {
                 }
         }
         
-        
-         if (player.body.touching.down) 
-             if(aKey.isDown){
-                if (playerState == "WALK_LEFT" || playerState == "IDLELEFT" || playerState == "AIR_LEFT") {
-                    playerState = "SHOOT_LEFT";
-                }else if (playerState == "WALK_RIGHT" || playerState == "IDLERIGHT" || playerState == "AIR_RIGHT") {
-                    playerState = "SHOOT_RIGHT";
-                    
-                } 
-        }
-    //                    player.animations.stop('shootright') || player.animations.stop('shootleft')
-//                   
-         if (player.body.touching.down) 
-            if (sKey.isDown){
-                if (playerState == "WALK_LEFT" || playerState == "IDLELEFT" || playerState == "AIR_LEFT") {
-                    playerState = "RELOAD_LEFT";
-                }else if (playerState == "WALK_RIGHT" || playerState == "IDLERIGHT" || playerState == "AIR_RIGHT") {
-                    playerState = "RELOAD_RIGHT";
-                }
-    }
+    
        
-        
-        
 
         /*
         * Handle player state
@@ -355,31 +245,32 @@ function running(game) {
                 break;
 
             case "WALK_LEFT":
-                player.body.velocity.x = -500;
+                player.body.velocity.x = -400;
                 player.animations.play('left');
                 break;
 
             case "WALK_RIGHT":
-                player.body.velocity.x = 500;
+                player.body.velocity.x = 400;
                 player.animations.play('right');
+                
                 break;
 
             case "JUMP_RIGHT":
                 if (player.body.velocity.y == 0) {
-                    player.body.velocity.y -= 500;
+                    player.body.velocity.y -= 400;
                 }                
                 player.animations.play('jumpright')
                 break;
                 
             case "JUMP_LEFT":
                 if (player.body.velocity.y == 0) {
-                    player.body.velocity.y -= 500;
+                    player.body.velocity.y -= 400;
                 }
                 player.animations.play('jumpleft')
                 break;
                 
             case "AIR_RIGHT":
-                if (player.body.velocity.y == 500) {
+                if (player.body.velocity.y == 400) {
                     player.body.velocity.y -= 0;
                 }
                 player.animations.play('fallright')
@@ -389,35 +280,10 @@ function running(game) {
                 player.animations.play('fallleft')
                 break;
 
-            case "SHOOT_LEFT":
-                player.animations.play('shootleft');
-                player.body.velocity.x = 0;
-                player.body.velocity.y = 0;
-                break;
-                
-            case "SHOOT_RIGHT":
-                player.animations.play('shootright')
-                player.body.velocity.x = 0;
-                player.body.velocity.y = 0;
-                break;
-                
-            case "RELOAD_LEFT":
-                player.animations.play('reloadleft')
-                player.body.velocity.x = 0;
-                player.body.velocity.y = 0;
-                break;
-                
-            case "RELOAD_RIGHT":
-                player.animations.play('reloadright')
-                player.body.velocity.x = 0;
-                player.body.velocity.y = 0;
-                break;
-                
-                
 
             case "JUMP":
                 break;
-                
+
             default:
                 throw new Error("Invalid player state: " + playerState)
         }
