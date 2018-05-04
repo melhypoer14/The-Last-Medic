@@ -29,6 +29,7 @@ function running(game) {
         game.load.spritesheet('betcat', 'assets/betcat.png', 219, 168);
         game.load.spritesheet('car', 'assets/car.png', 938, 246);
         game.load.spritesheet('zom', 'assets/zom.png', 132, 147);
+        game.load.spritesheet('exp', 'assets/EXPLO.png', 2000, 1200);
         game.load.audio('music', 'assets/dust.mp3');
         game.load.audio('shoot', 'assets/shoot.mp3');
      
@@ -37,10 +38,7 @@ function running(game) {
     function create() {
         
     var Music = game.add.audio('music');
-        Music.play();
-        
-    var Shoot = game.add.audio('shoot');
-        
+        Music.play();        
         
         game.world.setBounds(0, 0, 6400, 600);
         game.add.sprite(0, 50, 'city');
