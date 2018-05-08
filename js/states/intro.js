@@ -2,7 +2,7 @@ function intro(game) {
     console.warn("intro");
     
     function preload(){
-        game.load.spritesheet('zom', 'assets/.png', 132, 147);
+        
     }
     
     function create(){
