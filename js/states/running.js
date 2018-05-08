@@ -38,7 +38,13 @@ function running(game) {
     function create() {
         
     var Music = game.add.audio('music');
+<<<<<<< HEAD
         Music.play();        
+=======
+        Music.play();
+        
+//        Shoot.play();        
+>>>>>>> 1cfe2ed2ac371e8f8f4cdeae76c2a3224db4dc89
         
         game.world.setBounds(0, 0, 6400, 600);
         game.add.sprite(0, 50, 'city');
@@ -85,38 +91,38 @@ function running(game) {
 
 
 
-
-        this.platforms = this.add.physicsGroup();
-        this.platforms.create(-300, 225, 'jet');
-        this.platforms.create(-300, 100, 'jet');
-        this.platforms.setAll('body.velocity.x', 1700);
-
-        this.platforms = this.add.physicsGroup();
-        this.platforms.create(-300, 200, 'jet');
-        this.platforms.create(-300, 125, 'jet');
-        this.platforms.setAll('body.velocity.x', 1800);
-
-        this.platforms = this.add.physicsGroup();
-        this.platforms.create(-300, 150, 'jet');
-        this.platforms.setAll('body.velocity.x', 1900);
-
-
-
-
-
-        this.platforms = this.add.physicsGroup();
-        this.platforms.create(-2000, 225, 'jet');
-        this.platforms.create(-2000, 100, 'jet');
-        this.platforms.setAll('body.velocity.x', 1780);
-
-        this.platforms = this.add.physicsGroup();
-        this.platforms.create(-2000, 200, 'jet');
-        this.platforms.create(-2000, 125, 'jet');
-        this.platforms.setAll('body.velocity.x', 1800);
-
-        this.platforms = this.add.physicsGroup();
-        this.platforms.create(-2000, 150, 'jet');
-        this.platforms.setAll('body.velocity.x', 1840);
+//
+//        this.platforms = this.add.physicsGroup();
+//        this.platforms.create(-300, 225, 'jet');
+//        this.platforms.create(-300, 100, 'jet');
+//        this.platforms.setAll('body.velocity.x', 1700);
+//
+//        this.platforms = this.add.physicsGroup();
+//        this.platforms.create(-300, 200, 'jet');
+//        this.platforms.create(-300, 125, 'jet');
+//        this.platforms.setAll('body.velocity.x', 1800);
+//
+//        this.platforms = this.add.physicsGroup();
+//        this.platforms.create(-300, 150, 'jet');
+//        this.platforms.setAll('body.velocity.x', 1900);
+//
+//
+//
+//
+//
+//        this.platforms = this.add.physicsGroup();
+//        this.platforms.create(-2000, 225, 'jet');
+//        this.platforms.create(-2000, 100, 'jet');
+//        this.platforms.setAll('body.velocity.x', 1780);
+//
+//        this.platforms = this.add.physicsGroup();
+//        this.platforms.create(-2000, 200, 'jet');
+//        this.platforms.create(-2000, 125, 'jet');
+//        this.platforms.setAll('body.velocity.x', 1800);
+//
+//        this.platforms = this.add.physicsGroup();
+//        this.platforms.create(-2000, 150, 'jet');
+//        this.platforms.setAll('body.velocity.x', 1840);
 
 
 
@@ -155,6 +161,36 @@ function running(game) {
         player.animations.add('shootleft', [67, 68, 69, 70, 71, 72, 73], 16, false);
         player.animations.add('reloadright', [74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85], 16, false);
         player.animations.add('reloadleft', [86, 87, 88, 89, 90, 91, 92, 93, 94, 95], 16, false);
+        player.shoot = game.add.audio('shoot');
+        
+        
+//        
+//         player = game.add.sprite(32, game.world.height - 600, 'zom');
+//         game.physics.arcade.enable(tween);
+//         player.body.setSize(150, 150, 10, 10);
+//         player.animations.add('zleft', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 8, false);
+//         player.animations.add('zright', [10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ], 8, false);
+//         player.animations.add('aleft', [24, 25, 26, 27 ], 8, false);
+//         player.animations.add('aright', [20, 21, 22, 23 ], 8, false);
+
+        
+        
+        
+        
+//      player.body.setSize(20, 30, 20, 10);
+        
+//        
+//         zombies = game.add.group();
+//    zombies.enableBody = true;
+//    zombies.physicsBodyType = Phaser.Physics.ARCADE;
+//    createZombies();
+//        
+//        
+        
+
+        
+        
+        
 //      player.body.setSize(20, 30, 20, 10);
         
 //        
@@ -315,11 +351,14 @@ function running(game) {
         
          if (player.body.touching.down) 
              if(aKey.isDown){
+                 //shooting left 
                 if (playerState == "WALK_LEFT" || playerState == "IDLELEFT" || playerState == "AIR_LEFT") {
                     playerState = "SHOOT_LEFT";
+                    player.shoot.play();
+                    //shooting right 
                 }else if (playerState == "WALK_RIGHT" || playerState == "IDLERIGHT" || playerState == "AIR_RIGHT") {
-                    playerState = "SHOOT_RIGHT";
-                    
+                    playerState = "SHOOT_RIGHT"; 
+                    player.shoot.play();
                 } 
         }
     //                    player.animations.stop('shootright') || player.animations.stop('shootleft')
@@ -391,12 +430,13 @@ function running(game) {
                 player.animations.play('shootleft');
                 player.body.velocity.x = 0;
                 player.body.velocity.y = 0;
+                
                 break;
                 
             case "SHOOT_RIGHT":
                 player.animations.play('shootright')
                 player.body.velocity.x = 0;
-                player.body.velocity.y = 0;
+                player.body.velocity.y = 0; 
                 break;
                 
             case "RELOAD_LEFT":
