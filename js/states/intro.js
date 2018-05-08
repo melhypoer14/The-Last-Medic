@@ -4,7 +4,6 @@ function intro(game) {
     function preload(){
 //        game.load.spritesheet('exp', 'assets/EXPLO.png', 2000, 1200, 30);
         game.load.spritesheet('exp', 'assets/exxp.png', 1000, 600);
-
     }
     
     function create(){
