@@ -153,7 +153,7 @@ function running(game) {
         player.animations.add('shootright', [60, 61, 62, 63, 64,65, 66], 16, true);
         player.animations.add('shootleft', [67, 68, 69, 70, 71, 72, 73], 16, true);
         player.animations.add('reloadright', [74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85], 16, true);
-        player.animations.add('reloadleft', [86, 87, 88, 89, 90, 91, 92, 93, 94, 95], 16, true);
+        player.animations.add('reloadleft', [86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97], 16, true);
         player.shoot = game.add.audio('shoot');
         
         game.input.touch.preventDefault = false;
@@ -295,17 +295,19 @@ function running(game) {
             }
         
         count++;
-        if (count == 35) {
-            if (playerState == "SHOOT_LEFT") {
+        if (playerState == "SHOOT_LEFT" || playerState == "SHOOT_RIGHT" || playerState == "RELOAD_LEFT" || playerState == "RELOAD_RIGHT") {
+            if (playerState == "SHOOT_LEFT" && count == 30) {
                 playerState = "IDLELEFT";
-            } else if (playerState == "SHOOT_RIGHT") {
+            } else if (playerState == "SHOOT_RIGHT" && count == 30) {
                 playerState = "IDLERIGHT";
-            } else if (playerState == "RELOAD_LEFT") {
+            } else if (playerState == "RELOAD_LEFT" && count == 45) {
                 playerState = "IDLELEFT";
-            } else if (playerState == "RELOAD_RIGHT") {
+            } else if (playerState == "RELOAD_RIGHT" && count == 45) {
                 playerState = "IDLERIGHT";
             }
         }
+        
+        
         
 
         /*
