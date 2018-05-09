@@ -13,6 +13,7 @@ function running(game) {
     var s;
     var zombies;
     var count;
+    var hitZombieCount = 0; 
 
     var playerState = "IDLERIGHT";
 //    var playState = "WALK_LEFT";
@@ -132,10 +133,10 @@ function running(game) {
         /*
         * Robots
         */
-//        zombies = game.add.physicsGroup();
-//
-//        zombie = zombies.create(200, game.world.height - 200, 'zombie');
-//        zombies.setAll('body.gravity.y', 1000);
+        zombies = game.add.physicsGroup();
+
+        zombie = zombies.create(400, game.world.height - 600, 'zom');
+        zombies.setAll('body.gravity.y', 1000);
 
 
 
@@ -180,16 +181,23 @@ function running(game) {
 
 }
     
+    function hitZombies(player, zombies) {
+        hitZombieCount += 1;
+        console.log(hitZombieCount);
+        
+        if(hitZombieCount % 30 == 0 ) {
+            player.kill();
+            game.state.start("intro");    
+        }
+        
+        
+    }
     
-    
-    
-    
-
     function update() {
         game.physics.arcade.collide(player, platforms);
-//        game.physics.arcade.collide(zombies, platforms);
-//        game.physics.arcade.collide(player, zombies);
+        game.physics.arcade.collide(zombies, platforms);
 
+        game.physics.arcade.overlap(player, zombies, hitZombies, null, game);
         /*
         * State Transitions
         */
